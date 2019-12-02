@@ -146,9 +146,20 @@ export class HomePage implements OnInit {
   }
 
   contractStatus() {
-    this.cstate = this.api.getContractStatus("24",this.token);
+    var policy_id = document.getElementById("policyId").value;
+    this.cstate = this.api.getContractStatus(policy_id,this.token);
     this.cstate.subscribe(data => {
       console.log('my status: ',data);
+      let full_content = JSON.parse(JSON.stringify(data));
+      let contract_list = full_content.contractProperties;
+      let wanted_workflow = JSON.parse(JSON.stringify(contract_list[1]));
+      let val = wanted_workflow.value;
+      if(val == "1") {
+        this.status = "Not claimed";
+      } else {
+        this.status = "Claimed";
+      }
+
     })
   }
 
@@ -204,7 +215,7 @@ getPicture(sourceType: PictureSourceType) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < 15; i++ ) {
+    for ( var i = 0; i < 20; i++ ) {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;

@@ -45,7 +45,7 @@
    <div class = "item item-input-inset">
     <label class = "item item-input-wrapper">
        <i class = "icon ion-edit placeholder-icon"></i>
-       Start date:<input type = "date" placeholder = "Start Date" id = "startDate"/>
+       Start date:<input type = "date" placeholder = "Start Date" id = "startDate" placeholder="YYYY-MM-DD"/>
     </label>
  </div>
  <div class = "item item-input-inset">
@@ -85,7 +85,7 @@
              {{ imageText }}
            </ion-card-content>
          </ion-card>
-       <button ion-button ful class="btn1">Claim</button>
+       <button ion-button full (click)="contractStatus()" class="btn1">Contract status</button>
     </label>
  </div>
 
