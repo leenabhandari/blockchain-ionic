@@ -69,14 +69,21 @@ export class ApiService {
     var headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set("Authorization", "Bearer " + token);
-    return this.http.post("https://icertislasttime-roevlw-api.azurewebsites.net/api/v2/contracts?workflowId=4&contractCodeId=4&connectionId=1", raw,{
+    return this.http.post("https://icertislasttime-roevlw-api.azurewebsites.net/api/v1/contracts?workflowId=4&contractCodeId=4&connectionId=1", raw,{
       headers:headers
     });
 
+    
+
   }
 
-   
-
-
+  createConractAction(raw:string,token:string,contractId:string) {
+    var headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set("Authorization", "Bearer " + token);
+    return this.http.post("https://icertislasttime-roevlw-api.azurewebsites.net/api/v2/contracts/"+contractId+"/actions", raw,{
+      headers:headers
+    });
   
+}
 }

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Insure-Farm {{ status }}
+      Insure-Farm 
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,23 +12,31 @@
     <!-- <ng-progress [min]="0" [max]="1"></ng-progress>
   -->
   <div class = "list">
+      <ion-card *ngIf="status">
+          <ion-card-header>
+            Status
+          </ion-card-header>
+          <ion-card-content>
+            {{ status }}
+          </ion-card-content>
+        </ion-card>
       <div class = "item item-input-inset">
           <div class = "item item-input-inset">
               <label class = "item item-input-wrapper">
                  <i class = "icon ion-edit placeholder-icon"></i>
-                 <input type = "text" placeholder = "First Name" id="fname" />
+                 <input type = "text" placeholder = "First Name" [(ngModel)]="fname" />
               </label>
            </div>
            <div class = "item item-input-inset">
               <label class = "item item-input-wrapper">
                  <i class = "icon ion-edit placeholder-icon"></i>
-                 <input type = "text" placeholder = "Last Name" id="lname" />
+                 <input type = "text" placeholder = "Last Name" [(ngModel)]="lname" />
               </label>
            </div>
            <div class = "item item-input-inset">
               <label class = "item item-input-wrapper">
                  <i class = "icon ion-edit placeholder-icon"></i>
-                 <input type = "text" placeholder = "Email ID" id="email" />
+                 <input type = "text" placeholder = "Email ID" [(ngModel)]="email" />
               </label>
            </div>
       </div>
@@ -45,34 +53,36 @@
    <div class = "item item-input-inset">
     <label class = "item item-input-wrapper">
        <i class = "icon ion-edit placeholder-icon"></i>
-       Start date:<input type = "date" placeholder = "Start Date" id = "startDate" placeholder="YYYY-MM-DD"/>
+       Start date:<input type = "date" placeholder = "Start Date" [(ngModel)] = "startDate" placeholder="YYYY-MM-DD"/>
     </label>
  </div>
  <div class = "item item-input-inset">
   <label class = "item item-input-wrapper">
      <i class = "icon ion-edit placeholder-icon"></i>
-     Expiry Date<input type = "date" placeholder = "Expiry Date" id = "expiryDate" />
+     Expiry Date<input type = "date" placeholder = "Expiry Date" [(ngModel)]= "expiryDate" />
   </label>
 </div>
 <div class = "item item-input-inset">
   <label class = "item item-input-wrapper">
      <i class = "icon ion-edit placeholder-icon"></i>
-     <input type = "text" placeholder = "X Geo coordinates 1 " id = "geoCor11" class ="geo"/>
-     <input type = "text" placeholder = "Y Geo coordinates 1 " id = "geoCor12" class ="geo" />
-     <input type = "text" placeholder = "X Geo coordinates 2 " id = "geoCor21" class ="geo" />
-     <input type = "text" placeholder = "Y Geo coordinates 2 " id = "geoCor22" class ="geo"/>
-     <input type = "text" placeholder = "X Geo coordinates 3 " id = "geoCor31" class ="geo"/>
-     <input type = "text" placeholder = "Y Geo coordinates 3 " id = "geoCor32" class ="geo"/>
-     <input type = "text" placeholder = "X Geo coordinates 4 " id = "geoCor41" class ="geo"/>
-     <input type = "text" placeholder = "Y Geo coordinates 4 " id = "geoCor42" class ="geo"/>
+     <input type = "text" placeholder = "X Geo coordinates 1 " [(ngModel)] = "geoCor11" class ="geo"/>
+     <input type = "text" placeholder = "Y Geo coordinates 1 " [(ngModel)] = "geoCor12" class ="geo" />
+     <input type = "text" placeholder = "X Geo coordinates 2 " [(ngModel)] = "geoCor21" class ="geo" />
+     <input type = "text" placeholder = "Y Geo coordinates 2 " [(ngModel)] = "geoCor22" class ="geo"/>
+     <input type = "text" placeholder = "X Geo coordinates 3 " [(ngModel)] = "geoCor31" class ="geo"/>
+     <input type = "text" placeholder = "Y Geo coordinates 3 " [(ngModel)] = "geoCor32" class ="geo"/>
+     <input type = "text" placeholder = "X Geo coordinates 4 " [(ngModel)] = "geoCor41" class ="geo"/>
+     <input type = "text" placeholder = "Y Geo coordinates 4 " [(ngModel)] = "geoCor42" class ="geo"/>
      <button ion-button full (click)="createContract()" class="btn1">Create Contract</button>
+     
   </label>
 </div>
 
 <div class = "item item-input-inset">
     <label class = "item item-input-wrapper">
        <i class = "icon ion-edit placeholder-icon"></i>
-       <input type = "text" placeholder = "Unique policy number" id = "policyId"/>
+       <input type = "text" placeholder = "Unique policy number" [(ngModel)]= "policyId"/>
+       <button ion-button full (click)="takeAction()" class="btn1">Initiate Claim </button>
        OR 
        <button ion-button full (click)="selectSource()" class="btn">Select Image</button>
          <button ion-button full (click)="recognizeImage()" [disabled]="!selectedImage" class="rec_btn">Recognize Image</button>
@@ -86,6 +96,7 @@
            </ion-card-content>
          </ion-card>
        <button ion-button full (click)="contractStatus()" class="btn1">Contract status</button>
+       
     </label>
  </div>
 
