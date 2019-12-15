@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpParams, HttpResponse } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
  
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,9 @@ export class ApiService {
   
   constructor(private http: HttpClient) { }
  
-  // getFilms() {
-  //   return this.http.get('https://swapi.co/api/films');
-  // }
+  getFilms() {
+    return this.http.get('https://swapi.co/api/films');
+  }
  
   // getFilm(id) {
   //   return this.http.get(`https://swapi.co/api/films/${id}`);
@@ -20,6 +21,9 @@ export class ApiService {
   getContractStatus(id:string, token:string) {
     var headers = new HttpHeaders();
     headers = headers.set("Authorization", "Bearer " + token);
+    // return this.http.get("https://icertislasttime-roevlw-api.azurewebsites.net/api/v1/contracts/"+id,{
+    //   headers:headers
+    // });
     return this.http.get("https://icertislasttime-roevlw-api.azurewebsites.net/api/v1/contracts/"+id,{
       headers:headers
     });
@@ -37,9 +41,9 @@ export class ApiService {
     body = body.set('q', '48.834,2.394');
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-    // return this.http.post('http://api.worldweatheronline.com/premium/v1/past-weather.ashx',body,{
-    //   headers: headers
-    // });
+    return this.http.post('http://api.worldweatheronline.com/premium/v1/past-weather.ashx',body,{
+      headers: headers
+    });
   }
   
   getToken() {
@@ -49,7 +53,7 @@ export class ApiService {
     body = body.set('client_id','0b917a22-0fa8-4bae-8d36-5f95120b566a');
     body = body.set('client_secret','KN4Ej3ACB5NiEf-5dn-Eza/ChiqoJOA[');
     body = body.set('grant_type','client_credentials');
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers= headers.set('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post('https://login.microsoftonline.com/6f591103-8df8-4289-bc45-4117ed552ba3/oauth2/token',body,{
       headers :headers
     });

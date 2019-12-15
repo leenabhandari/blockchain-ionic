@@ -12,12 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { NgProgressModule } from '@ngx-progressbar/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,NgProgressModule],
-  providers: [
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,NgProgressModule, FormsModule],
+ 
+providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

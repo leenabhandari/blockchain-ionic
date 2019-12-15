@@ -1,81 +1,10 @@
 
-// import { Component } from '@angular/core';
-// import { NavController, ActionSheetController, LoadingController } from '@ionic/angular';
-// import { Camera, PictureSourceType } from '@ionic-native/camera/ngx';
-// import * as Tesseract from 'tesseract.js'
-// import { NgProgress } from '@ngx-progressbar/core';
- 
-// @Component({
-//     selector: 'app-home',
-//     templateUrl: 'home.page.html',
-//     styleUrls: ['home.page.scss'],
-//   })
-// export class HomePage {
- 
-//   selectedImage: string;
-//   imageText: string;
- 
-//   constructor(public navCtrl: NavController, private camera: Camera, private actionSheetCtrl: ActionSheetController, public progress: NgProgress) {
-//   }
- 
-//   async selectSource() {    
-//     let actionSheet = this.actionSheetCtrl.create({
-//       buttons: [
-//         {
-//           text: 'Use Library',
-//           handler: () => {
-//             this.getPicture(this.camera.PictureSourceType.PHOTOLIBRARY);
-//           }
-//         }, {
-//           text: 'Capture Image',
-//           handler: () => {
-//             this.getPicture(this.camera.PictureSourceType.CAMERA);
-//           }
-//         }, {
-//           text: 'Cancel',
-//           role: 'cancel'
-//         }
-//       ]
-//     });
-//     (await actionSheet).present();
-//   }
- 
-//   getPicture(sourceType: PictureSourceType) {
-//     this.camera.getPicture({
-//       quality: 100,
-//       destinationType: this.camera.DestinationType.DATA_URL,
-//       sourceType: sourceType,
-//       allowEdit: true,
-//       saveToPhotoAlbum: false,
-//       correctOrientation: true
-//     }).then((imageData) => {
-//       this.selectedImage = `data:image/jpeg;base64,${imageData}`;
-//     });
-//   }
- 
-//   recognizeImage() {
-//     Tesseract.recognize(this.selectedImage)
-//     .progress(message => {
-//       if (message.status === 'recognizing text')
-//       //this.progress.set(message.progress);
-//       console.log(message.status);
-//     })
-//     .catch(err => console.error(err))
-//     .then(result => {
-//       this.imageText = result.text;
-//     })
-//     .finally(resultOrError => {
-//       //this.progress.complete();
-//     });
-//   }
- 
-// }
 
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 
 import { NavController, ActionSheetController, LoadingController } from '@ionic/angular';
 import { Camera, PictureSourceType } from '@ionic-native/camera/ngx';
@@ -83,11 +12,11 @@ import { NgProgress } from '@ngx-progressbar/core';
 import {Tesseract} from "tesseract.ts";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-contract',
+  templateUrl: 'contract.page.html',
+  styleUrls: ['contract.page.scss'],
 })
-export class HomePage implements OnInit {
+export class ContractPage implements OnInit {
   values:  Observable<any>;
   selectedImage: string;
   imageText: string;
@@ -114,22 +43,16 @@ export class HomePage implements OnInit {
   token1:string;
   constructor(private api: ApiService,public navCtrl: NavController, private camera: Camera, private actionSheetCtrl: ActionSheetController, public progress: NgProgress) {}
   ngOnInit(){
-    //throw new Error("Method not implemented.");
-    // this.values = this.api.getWeather();
-    // this.values.subscribe(data => {
-    //   console.log('my data: ', data);
-    // });
-
-    //throw new Error("Method not implemented.");
+   
     this.values = this.api.getToken();
     this.values.subscribe(data => {
       console.log('my data: ', data);
       var obj = JSON.parse(JSON.stringify(data));
       this.token1=obj.access_token
     });
+    this.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkJCOENlRlZxeWFHckdOdWVoSklpTDRkZmp6dyIsImtpZCI6IkJCOENlRlZxeWFHckdOdWVoSklpTDRkZmp6dyJ9.eyJhdWQiOiI5NDRlN2U2MC02ZmZhLTQxMTctOTZiZS03ZDlhMzlkMDdmYzAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC82ZjU5MTEwMy04ZGY4LTQyODktYmM0NS00MTE3ZWQ1NTJiYTMvIiwiaWF0IjoxNTc2Mzk1MjMxLCJuYmYiOjE1NzYzOTUyMzEsImV4cCI6MTU3NjM5OTEzMSwiYWlvIjoiNDJWZ1lLak9acnFWYkc0UTY4VzI2UU5QbTBvREFBPT0iLCJhcHBpZCI6IjBiOTE3YTIyLTBmYTgtNGJhZS04ZDM2LTVmOTUxMjBiNTY2YSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzZmNTkxMTAzLThkZjgtNDI4OS1iYzQ1LTQxMTdlZDU1MmJhMy8iLCJvaWQiOiJkODFkY2M2MS05NjNkLTRkYmUtYmE1Yy1iYTEwZGQ5NWM4NmEiLCJyb2xlcyI6WyJBZG1pbmlzdHJhdG9yIl0sInN1YiI6ImQ4MWRjYzYxLTk2M2QtNGRiZS1iYTVjLWJhMTBkZDk1Yzg2YSIsInRpZCI6IjZmNTkxMTAzLThkZjgtNDI4OS1iYzQ1LTQxMTdlZDU1MmJhMyIsInV0aSI6IjFnMVRud2ZQUkV1QjlpOFlIdVVSQUEiLCJ2ZXIiOiIxLjAifQ.GzSopJPPwI6YQK84JcUa6qklgeT5z5brBaH9_rAq-RhA7fxtgSpkgpibco3_WKBs3FHygDB-DBtieApp1PHoi3UeluxqNHW1qP-fxSOUZblcJD3B4TOvP3CSdbHhOmT5uSUQSoACNY-Q84q-qjMeejiLqkVw6Jfn2sBz8UlnXKLUwdcQb3tFH3vPWQhojEoOuxWYoSHNr0XABC1enpbI145khV203p1hcJnnhrz8VINSUdlAjagCFOBpoLNbNC578zfikuvdqCD-oE2i9TInOxyIwbjfTBTLdFgs7_x3913dcXRR7oN3XdHdP2EU5dzwwaG1PIcR_iRJGCOkPHrb3w'
 
-    this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkJCOENlRlZxeWFHckdOdWVoSklpTDRkZmp6dyIsImtpZCI6IkJCOENlRlZxeWFHckdOdWVoSklpTDRkZmp6dyJ9.eyJhdWQiOiI5NDRlN2U2MC02ZmZhLTQxMTctOTZiZS03ZDlhMzlkMDdmYzAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC82ZjU5MTEwMy04ZGY4LTQyODktYmM0NS00MTE3ZWQ1NTJiYTMvIiwiaWF0IjoxNTc1NjA3Njc2LCJuYmYiOjE1NzU2MDc2NzYsImV4cCI6MTU3NTYxMTU3NiwiYWNyIjoiMSIsImFpbyI6IkFWUUFxLzhOQUFBQWRSRnVkUExaQkd2VnVMMXRCT1VEMXlZbFo5bm9JMGR6N2JYQzJLbkxORUV6NlpmNTV1cW8yVWM0SkNyNzhpM1U5MEVTNGdaNnl5d0Rmd1FDMnpIQ1BaSnl4RjRVNjUvUHlDemVXaHhHQVMwPSIsImFtciI6WyJwd2QiXSwiYXBwaWQiOiI5NDRlN2U2MC02ZmZhLTQxMTctOTZiZS03ZDlhMzlkMDdmYzAiLCJhcHBpZGFjciI6IjAiLCJlbWFpbCI6InNydXNodGlpbmdhbGVAaG90bWFpbC5jb20iLCJmYW1pbHlfbmFtZSI6IklOR0FMRSIsImdpdmVuX25hbWUiOiJTUlVTSFRJIiwiaWRwIjoibGl2ZS5jb20iLCJpcGFkZHIiOiIxMjMuMjAxLjExNi4yMTEiLCJuYW1lIjoiU1JVU0hUSSBJTkdBTEUiLCJvaWQiOiIxMDdhMjcwNy02MzYxLTRhOTUtOGZhOS00ODg3NWI1MjEzY2UiLCJyb2xlcyI6WyJBZG1pbmlzdHJhdG9yIl0sInNjcCI6IlVzZXIuUmVhZCBVc2VyLlJlYWRCYXNpYy5BbGwiLCJzdWIiOiJodjJhSFVKNktPV2lacDN3VjZMMEV0NzlFQU1pV1JoeThqYUFSUkF1Q2tJIiwidGlkIjoiNmY1OTExMDMtOGRmOC00Mjg5LWJjNDUtNDExN2VkNTUyYmEzIiwidW5pcXVlX25hbWUiOiJsaXZlLmNvbSNzcnVzaHRpaW5nYWxlQGhvdG1haWwuY29tIiwidXRpIjoic0lILThPWUZjRWlCbm9LZTkwOENBZyIsInZlciI6IjEuMCJ9.kQ4L48vuaW0SEjwbvv-cfR8mpInVddI1Y8jXHIX1hm9oqD-df-w9Sp50Xc3oXUeMfbmkpzJsGVxIQtiWBkCt2VQdFr_e_YbYuTD5yScuaedVdcg5lEsaydQ4NL4ZA72LFTXqhT-H47b53w4huruR01WjrTyw-JhbgApk0ynDrETSrCjelowpEzNHi9SOeZZK1GFjye9RLcNHkFzYwL-_NhDcbZ6LKtvdiLtbx9nkGQzMhCGQ7_ifvSSE9esBRs1I4fd8tTOrYOXXeGgCho3gK2DAtA0aiFPUPAQodxicrooIBmr_Zbxcr5NYLrn-algk4VT37zdjdokRuHZLOdqaXw"
-  }
+   }
 
   createUser() {
     var fname = this.fname;
@@ -181,7 +104,7 @@ export class HomePage implements OnInit {
     },
     err => {console.log(err);
     this.status = "Contract claim has already been initiated.";
-  }
+   }
     );
 
   }
@@ -251,9 +174,57 @@ getPicture(sourceType: PictureSourceType) {
     .then((res: any) => {
         //console.log(res);
         this.imageText = res.text;
+        let email = this.extractEmails(this.imageText);
+        console.log('email',email);
+        
+        this.getDate(this.imageText);
+        let amot = this.extractAmt(this.imageText);
+        console.log('amt',amot);
+        this.amtInsured = amot[0].slice(1);
+
     })
     .catch(console.error);
   }
+
+  extractEmails (text: string)
+{
+    return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+}
+
+
+extractAmt(str:string) {
+  return str.match(/(?:EUR|[$]|[₹])\s*\d+(?:\.\d{2})?/gi);
+}
+
+ getDate(d:string)
+{
+  let pattern = /[0-9]{2}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{4}/g;
+   const words = d.split("\\s+");
+  words.forEach((s) => {
+    console.log(s.match(pattern));
+  });
+  this.startDate = words[0];
+  this.expiryDate = words[1];
+    //var day:string, month:string, year:string;
+
+    //let result = d.match("[0-9]{2}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{4}");
+    // if(null != result) {
+    //     let dateSplitted = result[0].split(result[1]);
+    //     day = dateSplitted[0];
+    //     month = dateSplitted[1];
+    //     year = dateSplitted[2];
+    // }
+    // result = d.match("[0-9]{4}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{2}");
+    // if(null != result) {
+    //     let dateSplitted = result[0].split(result[1]);
+    //     day = dateSplitted[2];
+    //     month = dateSplitted[1];
+    //     year = dateSplitted[0];
+    // }
+
+    // return month+"/"+day+"/"+year;
+}
+
 
   makeid() {
     var result           = '';
