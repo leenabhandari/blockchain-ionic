@@ -24,7 +24,7 @@ export class ApiService {
     // return this.http.get("https://icertislasttime-roevlw-api.azurewebsites.net/api/v1/contracts/"+id,{
     //   headers:headers
     // });
-    return this.http.get("https://icertislasttime-roevlw-api.azurewebsites.net/api/v1/contracts/"+id,{
+    return this.http.get("https://icertishackathon-cfezfn-api.azurewebsites.net/api/v1/contracts/"+id,{
       headers:headers
     });
   }
@@ -49,12 +49,12 @@ export class ApiService {
   getToken() {
     var headers = new HttpHeaders();
     let body = new HttpParams();
-    body = body.set('resource','944e7e60-6ffa-4117-96be-7d9a39d07fc0');
-    body = body.set('client_id','0b917a22-0fa8-4bae-8d36-5f95120b566a');
-    body = body.set('client_secret','KN4Ej3ACB5NiEf-5dn-Eza/ChiqoJOA[');
+    body = body.set('resource','9014eace-1c9d-4aa1-9616-63cdedc486f8');
+    body = body.set('client_id','25b74a50-7903-44cc-891c-34955f2f6d2a');
+    body = body.set('client_secret','vlBtr08zNC?kgi1A1XSBtg[Z][qMUz46');
     body = body.set('grant_type','client_credentials');
     headers= headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('https://login.microsoftonline.com/6f591103-8df8-4289-bc45-4117ed552ba3/oauth2/token',body,{
+    return this.http.post('https://login.microsoftonline.com/c66186e2-9a63-4033-a1d8-ebeae6a16a33/oauth2/token',body,{
       headers :headers
     });
   }
@@ -64,7 +64,7 @@ export class ApiService {
 
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set("Authorization", "Bearer " + token);
-    return this.http.post('https://icertislasttime-roevlw-api.azurewebsites.net/api/v2/users', raw,{
+    return this.http.post('https://icertishackathon-cfezfn-api.azurewebsites.net/api/v1/users', raw,{
       headers:headers
     });
   }
@@ -73,7 +73,7 @@ export class ApiService {
     var headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set("Authorization", "Bearer " + token);
-    return this.http.post("https://icertislasttime-roevlw-api.azurewebsites.net/api/v1/contracts?workflowId=4&contractCodeId=4&connectionId=1", raw,{
+    return this.http.post("https://icertishackathon-cfezfn-api.azurewebsites.net/api/v1/contracts?workflowId=1&contractCodeId=1&connectionId=1", raw,{
       headers:headers
     });
 
@@ -85,7 +85,7 @@ export class ApiService {
     var headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set("Authorization", "Bearer " + token);
-    return this.http.post("https://icertislasttime-roevlw-api.azurewebsites.net/api/v2/contracts/"+contractId+"/actions", raw,{
+    return this.http.post("https://icertishackathon-cfezfn-api.azurewebsites.net/api/v1/contracts/"+contractId+"/actions", raw,{
       headers:headers
     });
   

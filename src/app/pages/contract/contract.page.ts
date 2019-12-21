@@ -50,7 +50,7 @@ export class ContractPage implements OnInit {
       var obj = JSON.parse(JSON.stringify(data));
       this.token1=obj.access_token
     });
-    this.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkJCOENlRlZxeWFHckdOdWVoSklpTDRkZmp6dyIsImtpZCI6IkJCOENlRlZxeWFHckdOdWVoSklpTDRkZmp6dyJ9.eyJhdWQiOiI5NDRlN2U2MC02ZmZhLTQxMTctOTZiZS03ZDlhMzlkMDdmYzAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC82ZjU5MTEwMy04ZGY4LTQyODktYmM0NS00MTE3ZWQ1NTJiYTMvIiwiaWF0IjoxNTc2Mzk1MjMxLCJuYmYiOjE1NzYzOTUyMzEsImV4cCI6MTU3NjM5OTEzMSwiYWlvIjoiNDJWZ1lLak9acnFWYkc0UTY4VzI2UU5QbTBvREFBPT0iLCJhcHBpZCI6IjBiOTE3YTIyLTBmYTgtNGJhZS04ZDM2LTVmOTUxMjBiNTY2YSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzZmNTkxMTAzLThkZjgtNDI4OS1iYzQ1LTQxMTdlZDU1MmJhMy8iLCJvaWQiOiJkODFkY2M2MS05NjNkLTRkYmUtYmE1Yy1iYTEwZGQ5NWM4NmEiLCJyb2xlcyI6WyJBZG1pbmlzdHJhdG9yIl0sInN1YiI6ImQ4MWRjYzYxLTk2M2QtNGRiZS1iYTVjLWJhMTBkZDk1Yzg2YSIsInRpZCI6IjZmNTkxMTAzLThkZjgtNDI4OS1iYzQ1LTQxMTdlZDU1MmJhMyIsInV0aSI6IjFnMVRud2ZQUkV1QjlpOFlIdVVSQUEiLCJ2ZXIiOiIxLjAifQ.GzSopJPPwI6YQK84JcUa6qklgeT5z5brBaH9_rAq-RhA7fxtgSpkgpibco3_WKBs3FHygDB-DBtieApp1PHoi3UeluxqNHW1qP-fxSOUZblcJD3B4TOvP3CSdbHhOmT5uSUQSoACNY-Q84q-qjMeejiLqkVw6Jfn2sBz8UlnXKLUwdcQb3tFH3vPWQhojEoOuxWYoSHNr0XABC1enpbI145khV203p1hcJnnhrz8VINSUdlAjagCFOBpoLNbNC578zfikuvdqCD-oE2i9TInOxyIwbjfTBTLdFgs7_x3913dcXRR7oN3XdHdP2EU5dzwwaG1PIcR_iRJGCOkPHrb3w'
+    this.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6InBpVmxsb1FEU01LeGgxbTJ5Z3FHU1ZkZ0ZwQSIsImtpZCI6InBpVmxsb1FEU01LeGgxbTJ5Z3FHU1ZkZ0ZwQSJ9.eyJhdWQiOiI5MDE0ZWFjZS0xYzlkLTRhYTEtOTYxNi02M2NkZWRjNDg2ZjgiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jNjYxODZlMi05YTYzLTQwMzMtYTFkOC1lYmVhZTZhMTZhMzMvIiwiaWF0IjoxNTc2OTQ4MjY0LCJuYmYiOjE1NzY5NDgyNjQsImV4cCI6MTU3Njk1MjE2NCwiYWlvIjoiNDJWZ1lPampPZXQxN0FDN3ljME1waldXbmlrc0FBPT0iLCJhcHBpZCI6ImFiZWFiNzIxLTdlYTctNDY4MS1hM2ViLTM3MGY3OTA1MDk1YiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2M2NjE4NmUyLTlhNjMtNDAzMy1hMWQ4LWViZWFlNmExNmEzMy8iLCJvaWQiOiI5MDE0NTEyNC0wZjEwLTQ2MzUtOTU3ZC1mODIyNzZmNGE0YzAiLCJyb2xlcyI6WyJBZG1pbmlzdHJhdG9yIl0sInN1YiI6IjkwMTQ1MTI0LTBmMTAtNDYzNS05NTdkLWY4MjI3NmY0YTRjMCIsInRpZCI6ImM2NjE4NmUyLTlhNjMtNDAzMy1hMWQ4LWViZWFlNmExNmEzMyIsInV0aSI6IlBUcnljbUhPRDBlOTg0REpKbkJ5QUEiLCJ2ZXIiOiIxLjAifQ.cE4ilcAkjqqYBLlOQspdFZz9QN5rAn-5Vp_K3zlyNnZABNNYb5x4ZXqlSOhKZHIH0VgRgWPwu0KTFH0lcTXum1xIoUcT2mCXyPNbQEEijOv2bqLWQDe3G-4ZDZy-JMx3Wu3IJiG6dQ9Qeg6ex4V76lQXH100f26_9UpePsdcQ0Aq4t96kyXaVlNFvFVorXwxanghN-_V1m4rtYFleEwn-6-_xefsxHWesd6ui_7OB12BTVGaQ0zSQU-dV2Y62pfRV0gCMXakB3NVTx35GXQUDrV-wA0MNFASBidomCrPYoCO4MgTO1o8fcUf52aMk0_XN2st30n-nKh-ZjqG8_UtXg'
 
    }
 
@@ -76,13 +76,13 @@ export class ContractPage implements OnInit {
     var geo_co = this.getGeoCoordinate();
     var gc11 = parseFloat(this.geoCor11);
     var gc12 = parseFloat(this.geoCor12);
-     geo_co = "4,7";
-     start_date = "12-12-2019";
-     end_date = "12-12-2020";
-     amt_insured = "19999";
+    //  geo_co = "4,7";
+     // start_date = new Date(Date.parse("12-12-2019"));
+     // end_date = new Date(Date.parse("12-12-2020"));
+    //  amt_insured = "19999";
 
     //var json = "{ \"workflowFunctionID\": 20,\"workflowActionParameters\":  [{\"name\": \"amt_insured\",\"value\": \""+amt_insured+"\",\"workflowFunctionParameterId\": 18},{\"name\": \"starting\",\"value\": \""+start_date+"\",\"workflowFunctionParameterId\": 19},{\"name\": \"expiring\",\"value\": \""+end_date+"\",\"workflowFunctionParameterId\": 20},{\"name\": \"geo\", \"value\": \""+geo_co+"\", \"workflowFunctionParameterId\": 21 }] }"
-    var json = "{ \"workflowFunctionID\": 20,\"workflowActionParameters\":  [{\"name\": \"amt_insured\",\"value\": \""+amt_insured+"\",\"workflowFunctionParameterId\": 18},{\"name\": \"starting\",\"value\": \""+start_date+"\",\"workflowFunctionParameterId\": 19},{\"name\": \"expiring\",\"value\": \""+end_date+"\",\"workflowFunctionParameterId\": 20},{\"name\": \"geo\", \"value\": \""+geo_co+"\",\"workflowFunctionParameterId\": 21}]}"
+    var json = "{ \"workflowFunctionID\": 1,\"workflowActionParameters\":  [{\"name\": \"amt_insured\",\"value\": \""+amt_insured+"\",\"workflowFunctionParameterId\": 1},{\"name\": \"starting\",\"value\": \""+start_date+"\",\"workflowFunctionParameterId\": 2},{\"name\": \"expiring\",\"value\": \""+end_date+"\",\"workflowFunctionParameterId\": 3},{\"name\": \"geo\", \"value\": \""+geo_co+"\",\"workflowFunctionParameterId\": 4}]}"
     this.user = this.api.createConractAPI(json,this.token);
     this.user.subscribe(data => {
       console.log('my contract: ', data);
@@ -95,7 +95,7 @@ export class ContractPage implements OnInit {
 
   takeAction() {
     var policy_id = this.policyId;
-    var json = "{\"workflowFunctionID\": 25,\"workflowActionParameters\": [ ] }";
+    var json = "{\"workflowFunctionID\": 1,\"workflowActionParameters\": [ ] }";
     this.user = this.api.createConractAction(json,this.token,policy_id);
     this.user.subscribe(data => {
       
@@ -181,15 +181,45 @@ getPicture(sourceType: PictureSourceType) {
         let amot = this.extractAmt(this.imageText);
         console.log('amt',amot);
         this.amtInsured = amot[0].slice(1);
+        var geoco = this.extractGeoCo(this.imageText);
+        console.log('geoco',geoco);
 
     })
     .catch(console.error);
   }
 
   extractEmails (text: string)
-{
+  {
     return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
-}
+  }
+
+  extractGeoCo(text:string) {
+    let trial=text.split("Geocoordinates:");
+
+var res = trial[1].split("(");
+ var res_1=res[1].split(",");
+  var res_2=res_1[1].split(")");
+  //res_1[0]=x1 & res_2[0]=y1
+  //document.getElementById("demo").innerHTML = "First Name:"+res_1[0]+"<br>"+res_2[0];
+ var res_3=res[2].split(",");
+ var res_4=res_3[1].split(")");
+  //res_3[0]=x2 & res_4[0]=y2
+ var res_5=res[3].split(",");
+ var res_6=res_5[1].split(")");
+  //res_5=x3 & res_6=y3
+ var res_7=res[4].split(",");
+ var res_8=res_7[1].split(")");
+this.geoCor11 = res_1[0];
+this.geoCor12 = res_2[0];
+this.geoCor21 = res_3[0];
+this.geoCor22 = res_4[0];
+this.geoCor31 = res_5[0];
+this.geoCor32 = res_6[0];
+this.geoCor41 = res_7[0];
+this.geoCor42 = res_8[0];
+
+ return "x1="+res_1[0]+" y1="+res_2[0]+"<br>x2="+res_3[0]+" y2="+res_4[0]+"<br>x3="+res_5[0]+" y3="+res_6[0]+"<br>x4="+res_7[0]+" y4="+res_8[0];
+  }
 
 
 extractAmt(str:string) {
@@ -205,6 +235,8 @@ extractAmt(str:string) {
   });
   this.startDate = words[0];
   this.expiryDate = words[1];
+  
+  //this.expiryDate = new Date(Date.parse(words[1]));
     //var day:string, month:string, year:string;
 
     //let result = d.match("[0-9]{2}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{4}");

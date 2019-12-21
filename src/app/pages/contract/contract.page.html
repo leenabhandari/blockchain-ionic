@@ -29,26 +29,26 @@
    <div class = "item item-input-inset">
     <label class = "item item-input-wrapper">
        <i class = "icon ion-edit placeholder-icon"></i>
-       Start date:<input type = "date" placeholder = "Start Date" [(ngModel)] = "startDate" />
+       Start date:<input type = "text" placeholder = "Start Date" [(ngModel)] = "startDate" />
     </label>
  </div>
  <div class = "item item-input-inset">
   <label class = "item item-input-wrapper">
      <i class = "icon ion-edit placeholder-icon"></i>
-     Expiry Date<input type = "date" placeholder = "Expiry Date" [(ngModel)]= "expiryDate" />
+     Expiry Date<input type = "text" placeholder = "Expiry Date" [(ngModel)]= "expiryDate" />
   </label>
 </div>
 <div class = "item item-input-inset">
   <label class = "item item-input-wrapper">
      <i class = "icon ion-edit placeholder-icon"></i>
-     <input type = "text" placeholder = "X Geo coordinates 1 " [(ngModel)] = "geoCor11" class ="geo"/>
-     <input type = "text" placeholder = "Y Geo coordinates 1 " [(ngModel)] = "geoCor12" class ="geo" />
-     <input type = "text" placeholder = "X Geo coordinates 2 " [(ngModel)] = "geoCor21" class ="geo" />
-     <input type = "text" placeholder = "Y Geo coordinates 2 " [(ngModel)] = "geoCor22" class ="geo"/>
-     <input type = "text" placeholder = "X Geo coordinates 3 " [(ngModel)] = "geoCor31" class ="geo"/>
-     <input type = "text" placeholder = "Y Geo coordinates 3 " [(ngModel)] = "geoCor32" class ="geo"/>
-     <input type = "text" placeholder = "X Geo coordinates 4 " [(ngModel)] = "geoCor41" class ="geo"/>
-     <input type = "text" placeholder = "Y Geo coordinates 4 " [(ngModel)] = "geoCor42" class ="geo"/>
+     <input type = "text" placeholder = "X Geo coordinates 1 " [(ngModel)] = "geoCor11" class ="geo" id = "geoco11"/>
+     <input type = "text" placeholder = "Y Geo coordinates 1 " [(ngModel)] = "geoCor12" class ="geo" id = "geoco12"/>
+     <input type = "text" placeholder = "X Geo coordinates 2 " [(ngModel)] = "geoCor21" class ="geo" id = "geoco21"/>
+     <input type = "text" placeholder = "Y Geo coordinates 2 " [(ngModel)] = "geoCor22" class ="geo" id = "geoco22"/>
+     <input type = "text" placeholder = "X Geo coordinates 3 " [(ngModel)] = "geoCor31" class ="geo" id = "geoco31"/>
+     <input type = "text" placeholder = "Y Geo coordinates 3 " [(ngModel)] = "geoCor32" class ="geo" id = "geoco32"/>
+     <input type = "text" placeholder = "X Geo coordinates 4 " [(ngModel)] = "geoCor41" class ="geo" id = "geoco41"/>
+     <input type = "text" placeholder = "Y Geo coordinates 4 " [(ngModel)] = "geoCor42" class ="geo" id = "geoco42"/>
 
      OR 
      <button ion-button full (click)="selectSource()" class="btn">Select Image</button>
