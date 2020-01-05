@@ -20,12 +20,28 @@
           </ion-card-content>
         </ion-card>
      
+    
+   <div class = "item item-input-inset">
+    <label class = "item item-input-wrapper">
+       <i class = "icon ion-edit placeholder-icon"></i>
+       <input type = "text" placeholder = "Season" id = "season" [(ngModel)] = "season"/>
+    </label>
     <div class = "item item-input-inset">
       <label class = "item item-input-wrapper">
          <i class = "icon ion-edit placeholder-icon"></i>
-         <input type = "text" placeholder = "Amount Insured" id = "amtInsured" [(ngModel)] = "amtInsured"/>
+         <input type = "text" placeholder = "Crop type" id = "cropType" [(ngModel)] = "cropType"/>
       </label>
    </div>
+   <div class = "item item-input-inset">
+    <label class = "item item-input-wrapper">
+       <i class = "icon ion-edit placeholder-icon"></i>
+       <input type = "text" placeholder = "Area(in hectare)" id = "area" [(ngModel)] = "area"/>
+    </label>
+ </div>
+
+ 
+
+ </div>
    <div class = "item item-input-inset">
     <label class = "item item-input-wrapper">
        <i class = "icon ion-edit placeholder-icon"></i>
@@ -38,6 +54,15 @@
      Expiry Date<input type = "text" placeholder = "Expiry Date" [(ngModel)]= "expiryDate" />
   </label>
 </div>
+
+<div class = "item item-input-inset">
+  <label class = "item item-input-wrapper">
+     <i class = "icon ion-edit placeholder-icon"></i>
+     <input type = "text" placeholder = "Amount Insured" id = "amtInsured" [(ngModel)] = "amtInsured"/>
+  </label>
+</div>
+<button ion-button full (click)="getRes()" class="btn1">Predict Amount Insured</button>
+
 <div class = "item item-input-inset">
   <label class = "item item-input-wrapper">
      <i class = "icon ion-edit placeholder-icon"></i>

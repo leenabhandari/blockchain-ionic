@@ -1,6 +1,3 @@
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -10,6 +7,10 @@ import { NavController, ActionSheetController, LoadingController } from '@ionic/
 import { Camera, PictureSourceType } from '@ionic-native/camera/ngx';
 import { NgProgress } from '@ngx-progressbar/core';
 import {Tesseract} from "tesseract.ts";
+
+import { HTTP } from '@ionic-native/http/ngx';
+
+
 
 @Component({
   selector: 'app-contract',
@@ -22,6 +23,7 @@ export class ContractPage implements OnInit {
   imageText: string;
   token:string;
   user: Observable<any>;
+  predict: Observable<any>;
   status : string;
   contractId: string;
   cstate : Observable<any>;
@@ -41,7 +43,12 @@ export class ContractPage implements OnInit {
   lname:string;
   email:string;
   token1:string;
-  constructor(private api: ApiService,public navCtrl: NavController, private camera: Camera, private actionSheetCtrl: ActionSheetController, public progress: NgProgress) {}
+
+  cropType:string;
+  season:string;
+  area:string;
+
+  constructor(public http:HTTP,private api: ApiService,public navCtrl: NavController, private camera: Camera, private actionSheetCtrl: ActionSheetController, public progress: NgProgress) {}
   ngOnInit(){
    
     this.values = this.api.getToken();
@@ -50,8 +57,8 @@ export class ContractPage implements OnInit {
       var obj = JSON.parse(JSON.stringify(data));
       this.token1=obj.access_token
     });
-    this.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6InBpVmxsb1FEU01LeGgxbTJ5Z3FHU1ZkZ0ZwQSIsImtpZCI6InBpVmxsb1FEU01LeGgxbTJ5Z3FHU1ZkZ0ZwQSJ9.eyJhdWQiOiI5MDE0ZWFjZS0xYzlkLTRhYTEtOTYxNi02M2NkZWRjNDg2ZjgiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jNjYxODZlMi05YTYzLTQwMzMtYTFkOC1lYmVhZTZhMTZhMzMvIiwiaWF0IjoxNTc2OTQ4MjY0LCJuYmYiOjE1NzY5NDgyNjQsImV4cCI6MTU3Njk1MjE2NCwiYWlvIjoiNDJWZ1lPampPZXQxN0FDN3ljME1waldXbmlrc0FBPT0iLCJhcHBpZCI6ImFiZWFiNzIxLTdlYTctNDY4MS1hM2ViLTM3MGY3OTA1MDk1YiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2M2NjE4NmUyLTlhNjMtNDAzMy1hMWQ4LWViZWFlNmExNmEzMy8iLCJvaWQiOiI5MDE0NTEyNC0wZjEwLTQ2MzUtOTU3ZC1mODIyNzZmNGE0YzAiLCJyb2xlcyI6WyJBZG1pbmlzdHJhdG9yIl0sInN1YiI6IjkwMTQ1MTI0LTBmMTAtNDYzNS05NTdkLWY4MjI3NmY0YTRjMCIsInRpZCI6ImM2NjE4NmUyLTlhNjMtNDAzMy1hMWQ4LWViZWFlNmExNmEzMyIsInV0aSI6IlBUcnljbUhPRDBlOTg0REpKbkJ5QUEiLCJ2ZXIiOiIxLjAifQ.cE4ilcAkjqqYBLlOQspdFZz9QN5rAn-5Vp_K3zlyNnZABNNYb5x4ZXqlSOhKZHIH0VgRgWPwu0KTFH0lcTXum1xIoUcT2mCXyPNbQEEijOv2bqLWQDe3G-4ZDZy-JMx3Wu3IJiG6dQ9Qeg6ex4V76lQXH100f26_9UpePsdcQ0Aq4t96kyXaVlNFvFVorXwxanghN-_V1m4rtYFleEwn-6-_xefsxHWesd6ui_7OB12BTVGaQ0zSQU-dV2Y62pfRV0gCMXakB3NVTx35GXQUDrV-wA0MNFASBidomCrPYoCO4MgTO1o8fcUf52aMk0_XN2st30n-nKh-ZjqG8_UtXg'
-
+    this.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6InBpVmxsb1FEU01LeGgxbTJ5Z3FHU1ZkZ0ZwQSIsImtpZCI6InBpVmxsb1FEU01LeGgxbTJ5Z3FHU1ZkZ0ZwQSJ9.eyJhdWQiOiI5MDE0ZWFjZS0xYzlkLTRhYTEtOTYxNi02M2NkZWRjNDg2ZjgiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jNjYxODZlMi05YTYzLTQwMzMtYTFkOC1lYmVhZTZhMTZhMzMvIiwiaWF0IjoxNTc2OTk1MTQxLCJuYmYiOjE1NzY5OTUxNDEsImV4cCI6MTU3Njk5OTA0MSwiYWlvIjoiNDJWZ1lCQlVyR282K1o2ZDd5djdpNDNkMHhJdkFRQT0iLCJhcHBpZCI6ImFiZWFiNzIxLTdlYTctNDY4MS1hM2ViLTM3MGY3OTA1MDk1YiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2M2NjE4NmUyLTlhNjMtNDAzMy1hMWQ4LWViZWFlNmExNmEzMy8iLCJvaWQiOiI5MDE0NTEyNC0wZjEwLTQ2MzUtOTU3ZC1mODIyNzZmNGE0YzAiLCJyb2xlcyI6WyJBZG1pbmlzdHJhdG9yIl0sInN1YiI6IjkwMTQ1MTI0LTBmMTAtNDYzNS05NTdkLWY4MjI3NmY0YTRjMCIsInRpZCI6ImM2NjE4NmUyLTlhNjMtNDAzMy1hMWQ4LWViZWFlNmExNmEzMyIsInV0aSI6InVBeGttSHNQSUVhb1ZYUlZHWXg2QUEiLCJ2ZXIiOiIxLjAifQ.RFFd21KB5P_2uNX20P9NKZLTbf6393LANJZUIwCWwjk86X8kocF3mn9P0LdFhWiRhXWPifL5_8crlVWaZA2MgRxlvEVQ_bPmypNDqou2AfM7YvUSbH7PUBdfy8AIog5vlZAGP7_DFRQTQRkFLV65bXPl194G27FgJ7J9Z27GUUGdrLY_Ou60GQzqQGh4XTUOEaDS1Ky-jnCzidH-FWK0lkfv8RCVHrJUhr3fYzNecmsTTNEuIT7JetpFNG6wYuhWX_VZz1EoLgUpgZyuk42uI3GSvkHy299RV2GS3nT07hwE4mnkCHpBcqxCmQQEVReHT8M9zSEv_5Wapj8sJX2PwA'
+    
    }
 
   createUser() {
@@ -70,6 +77,7 @@ export class ContractPage implements OnInit {
   }
 
   createContract() {
+    this.roleSwitch1();
     var start_date = this.startDate;
     var end_date = this.expiryDate;
     var amt_insured = this.amtInsured;
@@ -93,9 +101,68 @@ export class ContractPage implements OnInit {
 
   }
 
+  getRes() {
+    var x = 1;
+      if(this.season == 'Kharif') {
+        x = 2;
+      }
+    this.amtInsured = String(Math.round(11000/989 * parseInt(this.area) * 10000 * x));
+  //   var json = "{\"Inputs\": {\"input1\":[{\"YEAR\": \"2020\" } ]},\"GlobalParameters\":  {}}";
+  //   let headers = {
+  //     'Content-Type': 'application/json',
+  //     'Authorization': 'Bearer pVVWGyCODkd7y5B4DbtkJiE22Vyb1u3R5/X+rb+LG5q9sMztM/qhqFNbjEo9zsA4Om3WdUZDOrjvZsEcvlE0cg=='
+  // };
+  //   this.http.post(
+  //     'https://ussouthcentral.services.azureml.net/workspaces/439d06ed85c74a2cafcb1b6a0d7c39a0/services/b847d834aa1a4a5380bc145dae7a32ed/execute?api-version=2.0&format=swagger',             //URL
+  //     json,         //Data 
+  //     headers // Headers
+  //    )
+  //    .then(response => {
+  //       // prints 200
+  //       console.log(response.status);
+  //       console.log(response.data);
+  //       var navin=response.data.split("Labels:");
+  //      var navin1=navin.split("}");
+  //      console.log(navin1[0]);
+  //       // try {
+  //       //   response.data = JSON.parse(response.data);
+  //       //   // prints test
+  //       //   console.log(response.data.message);
+  //       // } catch(e) {
+  //       //   console.error('JSON parsing error');
+  //       // }
+  //    })
+  //    .catch(response => {
+  //      // prints 403
+  //      console.log(response.status);
+  
+  //      // prints Permission denied
+  //      console.log(response.error);
+  //    });
+
+
+    // let xx = this.api.getMLres(json);
+    // this.predict.subscribe(data=> {
+    //   console.log('ML result',data);
+    //   // let full_content = JSON.parse(JSON.stringify(data));
+    //   // let results = full_content.Results;
+    //   // let temp = JSON.parse(JSON.stringify(results));
+    //   // let out = temp.output1;
+    //   // let wanted = JSON.parse(JSON.stringify(out[0]));
+    //   // let val = wanted."Scored Labels".value;
+      
+      
+    //   var navin=data.split("Labels:");
+    //   var navin1=navin.split("}");
+    //   console.log(navin1[0]);
+
+    // })
+  }
+
   takeAction() {
+    this.roleSwitch();
     var policy_id = this.policyId;
-    var json = "{\"workflowFunctionID\": 1,\"workflowActionParameters\": [ ] }";
+    var json = "{\"workflowFunctionID\": 2,\"workflowActionParameters\": [ ] }";
     this.user = this.api.createConractAction(json,this.token,policy_id);
     this.user.subscribe(data => {
       
@@ -108,6 +175,34 @@ export class ContractPage implements OnInit {
     );
 
   }
+
+  roleSwitch() {
+  
+    var json = "{\"userId\": 7,\"applicationRoleId\": 2}";
+    this.user = this.api.changeRole(json,this.token);
+    this.user.subscribe(data => {
+      
+      console.log('my role change: ', data);
+    
+    }
+    
+    );
+
+  }
+  roleSwitch1() {
+  
+    var json = "{\"userId\": 7,\"applicationRoleId\": 1}";
+    this.user = this.api.changeRole(json,this.token);
+    this.user.subscribe(data => {
+      
+      console.log('my role change: ', data);
+    
+    }
+    
+    );
+
+  }
+
 
   contractStatus() {
     var policy_id = this.policyId;
@@ -230,11 +325,16 @@ extractAmt(str:string) {
 {
   let pattern = /[0-9]{2}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{4}/g;
    const words = d.split("\\s+");
+   let pats = [];
   words.forEach((s) => {
     console.log(s.match(pattern));
+    pats.push(s.match(pattern));
   });
-  this.startDate = words[0];
-  this.expiryDate = words[1];
+  console.log('words',words);
+  console.log('pats',pats);
+  //var enddate=pats[0].split(",");
+  this.startDate = pats[0][0];
+  this.expiryDate = pats[0][1];
   
   //this.expiryDate = new Date(Date.parse(words[1]));
     //var day:string, month:string, year:string;

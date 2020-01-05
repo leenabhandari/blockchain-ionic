@@ -26,7 +26,7 @@
        <i class = "icon ion-edit placeholder-icon"></i>
        <input type = "text" placeholder = "Unique policy number" [(ngModel)]= "policyId"/>
        <button ion-button full (click)="takeAction()" class="btn1">Initiate Claim </button>
-       OR 
+       <!-- OR 
        <button ion-button full (click)="selectSource()" class="btn">Select Image</button>
          <button ion-button full (click)="recognizeImage()" [disabled]="!selectedImage" class="rec_btn">Recognize Image</button>
          <img [src]="selectedImage" *ngIf="selectedImage">
@@ -37,9 +37,10 @@
            <ion-card-content>
              {{ imageText }}
            </ion-card-content>
-         </ion-card>
-       <button ion-button full (click)="contractStatus()" class="btn1">Contract status</button>
-       <button ion-button full (click)="weatherData()" class="btn">Weather status</button>
+         </ion-card>-->
+         <br>
+        <button ion-button full (click)="contractStatus()" class="btn">Contract status</button> 
+     <!--  <button ion-button full (click)="weatherData()" class="btn">Weather status</button> -->
     </label>
  </div>
 

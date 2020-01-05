@@ -1,7 +1,7 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpParams, HttpResponse } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
+import { stringify } from 'querystring';
  
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,12 @@ export class ApiService {
     body = body.set('client_secret','vlBtr08zNC?kgi1A1XSBtg[Z][qMUz46');
     body = body.set('grant_type','client_credentials');
     headers= headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    // headers = headers.set('Strict-Transport-Security','max-age=31536000; includeSubDomains');
+    // headers = headers.set('X-Content-Type-Options','nosniff');
+    // headers = headers.set('x-ms-request-id','72f23a3d-ce61-470f-bdf3-80c926707200');
+    // headers = headers.set('x-ms-ests-server','2.1.9767.22 - HKG2 ProdSlices');
+  //headers = headers.set('Access-Control-Allow-Origin','*');
     return this.http.post('https://login.microsoftonline.com/c66186e2-9a63-4033-a1d8-ebeae6a16a33/oauth2/token',body,{
       headers :headers
     });
@@ -64,6 +70,7 @@ export class ApiService {
 
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set("Authorization", "Bearer " + token);
+    
     return this.http.post('https://icertishackathon-cfezfn-api.azurewebsites.net/api/v1/users', raw,{
       headers:headers
     });
@@ -88,6 +95,32 @@ export class ApiService {
     return this.http.post("https://icertishackathon-cfezfn-api.azurewebsites.net/api/v1/contracts/"+contractId+"/actions", raw,{
       headers:headers
     });
+
+    
   
 }
+
+changeRole(raw:string,token:string) {
+  var headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json');
+  headers = headers.set("Authorization", "Bearer " + token);
+  return this.http.post("https://icertishackathon-cfezfn-api.azurewebsites.net/api/v1/applications/1/roleAssignments", raw,{
+    headers:headers
+  });
+}
+
+getMLres(raw:string) {
+  var headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json');
+  headers = headers.set('Access-Control-Allow-Origin','origin');
+    headers = headers.set('Access-Control-Allow-Methods','PUT, GET, POST, DELETE, OPTIONS, PATCH');
+    headers = headers.set('Access-Control-Allow-Headers','accept, content-type');
+  headers = headers.set("Authorization", "Bearer pVVWGyCODkd7y5B4DbtkJiE22Vyb1u3R5/X+rb+LG5q9sMztM/qhqFNbjEo9zsA4Om3WdUZDOrjvZsEcvlE0cg==" );
+  return this.http.post("https://ussouthcentral.services.azureml.net/workspaces/439d06ed85c74a2cafcb1b6a0d7c39a0/services/b847d834aa1a4a5380bc145dae7a32ed/execute?api-version=2.0&format=swagger", raw,{
+    headers:headers
+  });
+
+  
+}
+
 }

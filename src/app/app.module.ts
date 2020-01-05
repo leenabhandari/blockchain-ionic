@@ -14,6 +14,9 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { FormsModule } from '@angular/forms';
 
+
+import { HTTP } from '@ionic-native/http/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,7 +26,8 @@ providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera
+    Camera,
+    HTTP
   ],
   bootstrap: [AppComponent]
 })
