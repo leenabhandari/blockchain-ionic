@@ -1,6 +1,6 @@
 # blockchain-ionic
 
-*Note- This project was a part of Icertis AI/ML and blockchain hackathon adn was selected in the finals(12 teams across India).* 
+*Note- This project was a part of Icertis AI/ML and blockchain hackathon and was selected in the finals(12 teams across India).* 
 
 ## Problem Statement
 Farmers in developing countries like India have always been at the mercy of the weather. Changing weather patterns have further aggravated the problem.
